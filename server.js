@@ -3,6 +3,7 @@ const express = require('express');
 const db = require("./db");
 const morgan = require('morgan');
 const app = express();
+const cors = require("cors");
 
 // Middleware (where we place this middleware matters)
 /* app.use(morgan("dev"))
@@ -10,6 +11,7 @@ const app = express();
 app.use((req, res, next) => {
     next(); // passes on request/ respose to required handler
 }); */
+app.use(cors());
 app.use(express.json());
 
 // --- PROPERTIES ROUTES ---
