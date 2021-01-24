@@ -172,6 +172,22 @@ app.delete("/api/v1/expenses/:expenses_id", async (req,res) => {
     }
 });
 
+// Other Routes
+app.get("api/v1/expenses/notfullypaid", async (req, res) => {
+    try {
+        const results = db.query("SELECT * FROM expenses WHERE fully_paid = false")
+        res.status(200).json({
+            status: "success",
+            results: results.rows.length,
+            data: {
+                properties: results.rows,
+            }
+        });
+    } catch (err) {
+        console.log(err);
+    }
+});
+
 const port = process.env.PORT || 3001;
 app.listen(port, () => {
     console.log(`Server is up and listening on port ${port}`);
