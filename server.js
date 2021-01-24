@@ -173,9 +173,9 @@ app.delete("/api/v1/expenses/:expenses_id", async (req,res) => {
 });
 
 // Other Routes
-app.get("api/v1/expenses/notfullypaid", async (req, res) => {
+app.get("/api/v1/expenses/notfullypaid", async (req, res) => {
     try {
-        const results = db.query("SELECT * FROM expenses WHERE fully_paid = false")
+        const results = db.query("SELECT * FROM expenses WHERE fully_paid = FALSE")
         res.status(200).json({
             status: "success",
             results: results.rows.length,
